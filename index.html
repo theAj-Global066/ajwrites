@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJWrites - Creative Content That Converts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #ff6b35;
+            --secondary: #f7f7f7;
+            --text: #333333;
+            --border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .floating-text {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-1 {
+            animation-delay: 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .stagger-2 {
+            animation-delay: 0.4s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .stagger-3 {
+            animation-delay: 0.6s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .stagger-4 {
+            animation-delay: 0.8s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--border);
+            background: white;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .btn-primary:hover {
+            background: #ff8559;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .stats-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        nav {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold" style="font-family: 'Playfair Display', serif;">
+                AJ<span style="color: var(--accent);">Writes</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="hover:text-orange-500 transition">Home</a>
+                <a href="#portfolio" class="hover:text-orange-500 transition">Portfolio</a>
+                <a href="#services" class="hover:text-orange-500 transition">Services</a>
+                <a href="#testimonials" class="hover:text-orange-500 transition">Testimonials</a>
+                <a href="#contact" class="hover:text-orange-500 transition">Contact</a>
+            </div>
+            <a href="#contact">
+                <button class="btn-primary">Get Started</button>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section relative">
+        <div class="max-w-7xl mx-auto px-6 flex items-center min-h-screen relative z-10">
+            <div class="text-white max-w-3xl">
+                <div class="fade-in stagger-1">
+                    <span class="text-orange-500 font-semibold tracking-wider uppercase text-sm">Creative Content
+                        Writer</span>
+                </div>
+                <h1 class="text-6xl md:text-7xl font-bold mt-4 mb-6 leading-tight fade-in stagger-2">
+                    Words That <span style="color: var(--accent);">Captivate.</span><br />
+                    Stories That <span style="color: var(--accent);">Convert.</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-2xl fade-in stagger-3">
+                    Transform your brand's voice into compelling narratives that engage readers,
+                    build trust, and drive measurable results. From blog posts to book launches,
+                    I craft content that doesn't just speak—it sells.
+                </p>
+                <div class="flex gap-4 fade-in stagger-4">
+                    <a href="#portfolio">
+                        <button class="btn-primary">View My Work</button>
+                    </a>
+                    <a href="#contact">
+                        <button
+                            class="bg-transparent border-2 border-white text-white px-8 py-3 font-semibold hover:bg-white hover:text-black transition uppercase tracking-wide text-sm">
+                            Let's Collaborate
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating decorative element -->
+        <div class="absolute bottom-10 right-10 floating-text opacity-10">
+            <svg width="200" height="200" viewBox="0 0 200 200">
+                <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="120" font-family="Playfair Display"
+                    font-weight="900" dominant-baseline="middle">AM</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
+                <div>
+                    <div class="stats-number" id="stat1">500+</div>
+                    <p class="text-gray-600 mt-2 font-medium">Projects Delivered</p>
+                </div>
+                <div>
+                    <div class="stats-number" id="stat2">98%</div>
+                    <p class="text-gray-600 mt-2 font-medium">Client Satisfaction</p>
+                </div>
+                <div>
+                    <div class="stats-number" id="stat3">50+</div>
+                    <p class="text-gray-600 mt-2 font-medium">Happy Clients</p>
+                </div>
+                <div>
+                    <div class="stats-number" id="stat4">5+</div>
+                    <p class="text-gray-600 mt-2 font-medium">Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24" style="background: var(--secondary);">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <span class="accent-line"></span>
+                    <span class="text-orange-500 font-semibold uppercase tracking-wider">What I Offer</span>
+                    <span class="accent-line"></span>
+                </div>
+                <h2 class="text-5xl font-bold mb-4">Content Solutions That Drive Results</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Every word crafted with strategy, purpose, and your audience in mind.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="services-container">
+                <!-- Services will be loaded dynamically -->
+                <div class="service-card bg-white p-8 text-center">
+                    <div class="service-icon mx-auto">✍️</div>
+                    <h3 class="text-2xl font-bold mb-4">Blog & Article Writing</h3>
+                    <p class="text-gray-600 mb-6">SEO-optimized, engaging content that positions you as an industry
+                        authority and keeps readers coming back.</p>
+                    <a href="#contact" class="text-orange-500 font-semibold hover:underline">Learn More →</a>
+                </div>
+
+                <div class="service-card bg-white p-8 text-center">
+                    <div class="service-icon mx-auto">📖</div>
+                    <h3 class="text-2xl font-bold mb-4">Book Marketing Copy</h3>
+                    <p class="text-gray-600 mb-6">Compelling descriptions, author bios, and promotional material that
+                        turn browsers into buyers.</p>
+                    <a href="#contact" class="text-orange-500 font-semibold hover:underline">Learn More →</a>
+                </div>
+
+                <div class="service-card bg-white p-8 text-center">
+                    <div class="service-icon mx-auto">🎯</div>
+                    <h3 class="text-2xl font-bold mb-4">Brand Storytelling</h3>
+                    <p class="text-gray-600 mb-6">Authentic narratives that connect emotionally with your audience and
+                        build lasting brand loyalty.</p>
+                    <a href="#contact" class="text-orange-500 font-semibold hover:underline">Learn More →</a>
+                </div>
+
+                <div class="service-card bg-white p-8 text-center">
+                    <div class="service-icon mx-auto">📧</div>
+                    <h3 class="text-2xl font-bold mb-4">Email Campaigns</h3>
+                    <p class="text-gray-600 mb-6">Persuasive sequences that nurture leads, boost engagement, and
+                        maximize conversions.</p>
+                    <a href="#contact" class="text-orange-500 font-semibold hover:underline">Learn More →</a>
+                </div>
+
+                <div class="service-card bg-white p-8 text-center">
+                    <div class="service-icon mx-auto">📱</div>
+                    <h3 class="text-2xl font-bold mb-4">Social Media Content</h3>
+                    <p class="text-gray-600 mb-6">Scroll-stopping captions and posts designed to spark conversations and
+                        grow your community.</p>
+                    <a href="#contact" class="text-orange-500 font-semibold hover:underline">Learn More →</a>
+                </div>
+
+                <div class="service-card bg-white p-8 text-center">
+                    <div class="service-icon mx-auto">🚀</div>
+                    <h3 class="text-2xl font-bold mb-4">Landing Pages</h3>
+                    <p class="text-gray-600 mb-6">High-converting copy that transforms visitors into customers with
+                        strategic CTAs and benefits.</p>
+                    <a href="#contact" class="text-orange-500 font-semibold hover:underline">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <span class="accent-line"></span>
+                    <span class="text-orange-500 font-semibold uppercase tracking-wider">Recent Work</span>
+                    <span class="accent-line"></span>
+                </div>
+                <h2 class="text-5xl font-bold mb-4">Portfolio Highlights</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    A glimpse into projects that have helped brands amplify their message and achieve their goals.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-container">
+                <!-- Portfolio items will be loaded dynamically -->
+                <div class="project-card p-6">
+                    <div class="bg-gray-200 h-48 mb-4 flex items-center justify-center text-gray-400">
+                        <span class="text-6xl">📚</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Best-Selling Author Campaign</h3>
+                    <p class="text-gray-600 mb-4">Crafted book descriptions and launch emails that drove 10,000+
+                        pre-orders in two weeks.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="bg-orange-100 text-orange-600 px-3 py-1 text-sm font-medium">Copywriting</span>
+                        <span class="bg-orange-100 text-orange-600 px-3 py-1 text-sm font-medium">Email Marketing</span>
+                    </div>
+                </div>
+
+                <div class="project-card p-6">
+                    <div class="bg-gray-200 h-48 mb-4 flex items-center justify-center text-gray-400">
+                        <span class="text-6xl">💼</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">SaaS Brand Storytelling</h3>
+                    <p class="text-gray-600 mb-4">Developed compelling brand narrative that increased website
+                        conversions by 45%.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="bg-orange-100 text-orange-600 px-3 py-1 text-sm font-medium">Brand Voice</span>
+                        <span class="bg-orange-100 text-orange-600 px-3 py-1 text-sm font-medium">Web Copy</span>
+                    </div>
+                </div>
+
+                <div class="project-card p-6">
+                    <div class="bg-gray-200 h-48 mb-4 flex items-center justify-center text-gray-400">
+                        <span class="text-6xl">📖</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Lifestyle Blog Growth</h3>
+                    <p class="text-gray-600 mb-4">SEO content strategy that tripled organic traffic and doubled email
+                        subscribers in 6 months.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="bg-orange-100 text-orange-600 px-3 py-1 text-sm font-medium">SEO Writing</span>
+                        <span class="bg-orange-100 text-orange-600 px-3 py-1 text-sm font-medium">Content
+                            Strategy</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#contact">
+                    <button class="btn-primary">Start Your Project Today</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24" style="background: var(--secondary);">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <span class="accent-line"></span>
+                    <span class="text-orange-500 font-semibold uppercase tracking-wider">Client Success</span>
+                    <span class="accent-line"></span>
+                </div>
+                <h2 class="text-5xl font-bold mb-4">What Clients Say</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="testimonials-container">
+                <!-- Testimonials will be loaded dynamically -->
+                <div class="testimonial-card">
+                    <div class="text-4xl text-orange-500 mb-4">"</div>
+                    <p class="text-lg text-gray-700 mb-6 italic">
+                        "AJ transformed our book launch! The compelling copy drove pre-orders through the roof. Working
+                        with a true professional who understands reader psychology."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full mr-4"></div>
+                        <div>
+                            <p class="font-bold">Sarah Mitchell</p>
+                            <p class="text-sm text-gray-600">Best-Selling Author</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="text-4xl text-orange-500 mb-4">"</div>
+                    <p class="text-lg text-gray-700 mb-6 italic">
+                        "Our conversion rate doubled after AJ rewrote our landing pages. The investment paid for itself
+                        in the first month. Highly recommend!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full mr-4"></div>
+                        <div>
+                            <p class="font-bold">Marcus Chen</p>
+                            <p class="text-sm text-gray-600">Marketing Director, TechFlow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <span class="accent-line"></span>
+                    <span class="text-orange-500 font-semibold uppercase tracking-wider">Let's Connect</span>
+                    <span class="accent-line"></span>
+                </div>
+                <h2 class="text-5xl font-bold mb-4">Ready to Amplify Your Message?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Let's discuss how strategic content can elevate your brand and drive the results you deserve.
+                </p>
+            </div>
+
+            <div class="bg-gray-50 p-10 border-2 border-gray-200">
+                <form id="contact-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block font-semibold mb-2">Your Name *</label>
+                            <input type="text" name="name" required
+                                class="w-full border-2 border-gray-300 px-4 py-3 focus:border-orange-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block font-semibold mb-2">Email Address *</label>
+                            <input type="email" name="email" required
+                                class="w-full border-2 border-gray-300 px-4 py-3 focus:border-orange-500 outline-none transition">
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block font-semibold mb-2">Service Needed</label>
+                        <select name="service"
+                            class="w-full border-2 border-gray-300 px-4 py-3 focus:border-orange-500 outline-none transition">
+                            <option>Blog & Article Writing</option>
+                            <option>Book Marketing Copy</option>
+                            <option>Brand Storytelling</option>
+                            <option>Email Campaigns</option>
+                            <option>Social Media Content</option>
+                            <option>Landing Pages</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block font-semibold mb-2">Project Details *</label>
+                        <textarea name="message" required rows="6"
+                            class="w-full border-2 border-gray-300 px-4 py-3 focus:border-orange-500 outline-none transition"
+                            placeholder="Tell me about your project, goals, and timeline..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full md:w-auto">
+                        Send Your Message
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-8 border-t-2 border-gray-300">
+                    <p class="text-center text-gray-600">
+                        📧 <strong>Email:</strong> hello@ajwrites.com &nbsp; | &nbsp;
+                        📱 <strong>Phone:</strong> +1 (555) 123-4567
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">
+                        AJ<span style="color: var(--accent);">Writes</span>
+                    </h3>
+                    <p class="text-gray-400">
+                        Crafting compelling content that converts browsers into believers and readers into customers.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-lg">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-orange-500 transition">Home</a></li>
+                        <li><a href="#services" class="hover:text-orange-500 transition">Services</a></li>
+                        <li><a href="#portfolio" class="hover:text-orange-500 transition">Portfolio</a></li>
+                        <li><a href="#contact" class="hover:text-orange-500 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-lg">Connect</h4>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-orange-500 flex items-center justify-center hover:bg-orange-600 transition">
+                            <span class="font-bold">Li</span>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-orange-500 flex items-center justify-center hover:bg-orange-600 transition">
+                            <span class="font-bold">Tw</span>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-orange-500 flex items-center justify-center hover:bg-orange-600 transition">
+                            <span class="font-bold">In</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 pt-8 border-t border-gray-800">
+                <p>&copy; 2026 AJWrites. All rights reserved. Crafted with passion and precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            try {
+                const response = await fetch('contact-handler.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(result.message);
+                    this.reset();
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                alert('Thank you for reaching out! I\'ll respond within 24 hours to discuss how we can bring your vision to life.');
+                this.reset();
+            }
+        });
+
+        // Add active state to navigation on scroll
+        window.addEventListener('scroll', function () {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-orange-500');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('text-orange-500');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
